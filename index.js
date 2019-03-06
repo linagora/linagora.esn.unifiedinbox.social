@@ -1,15 +1,11 @@
 const AwesomeModule = require('awesome-module');
 const Dependency = AwesomeModule.AwesomeModuleDependency;
-const glob = require('glob-all');
 const path = require('path');
-const _ = require('lodash');
-
-const NAME = 'unifiedinbox.social';
-const APP_ENTRY_POINT = 'app.js';
-const MODULE_NAME = 'linagora.esn.unifiedinbox.social';
+const glob = require('glob-all');
 const FRONTEND_JS_PATH = __dirname + '/frontend/app/';
+const AWESOME_MODULE_NAME = 'linagora.esn.unifiedinbox.social';
 
-const awesomeModule = new AwesomeModule(MODULE_NAME, {
+const awesomeModule = new AwesomeModule(AWESOME_MODULE_NAME, {
   dependencies: [
     new Dependency(Dependency.TYPE_NAME, 'linagora.esn.core.esn-config', 'esn-config'),
     new Dependency(Dependency.TYPE_NAME, 'linagora.esn.core.i18n', 'i18n'),
@@ -21,31 +17,43 @@ const awesomeModule = new AwesomeModule(MODULE_NAME, {
   ],
 
   states: {
-    deploy: function(dependencies, callback) {
-      const webserverWrapper = dependencies('webserver-wrapper');
-      const app = require('./backend/webserver')(this, dependencies);
-      let frontendModules = glob.sync([
-        FRONTEND_JS_PATH + '**/!(*spec).js'
-      ]).map(filepath => filepath.replace(FRONTEND_JS_PATH, ''));
+    lib: function(dependencies, callback) {
+      const moduleLib = require('./backend/lib')(dependencies);
 
-      _.pull(frontendModules, APP_ENTRY_POINT);
-      frontendModules = [APP_ENTRY_POINT].concat(frontendModules);
+      const lib = {
+        lib: moduleLib
+      };
 
-      webserverWrapper.injectAngularAppModules(NAME, frontendModules, MODULE_NAME, ['esn']);
-
-      const lessFile = path.join(FRONTEND_JS_PATH, 'app.less');
-      webserverWrapper.injectLess(MODULE_NAME, [lessFile], 'esn');
-
-      webserverWrapper.addApp(NAME, app);
-
-      require('./backend/lib/config')(dependencies).register();
-
-      return callback();
+      return callback(null, lib);
     },
 
-    start: (dependencies, callback) => callback()
+    deploy: function(dependencies, callback) {
+      // Register the webapp
+      const app = require('./backend/webserver/application')(dependencies, this);
+      const webserverWrapper = dependencies('webserver-wrapper');
+
+      // Register every exposed frontend scripts
+      const frontendJsFilesFullPath = glob.sync([
+        FRONTEND_JS_PATH + '**/*.module.js',
+        FRONTEND_JS_PATH + '**/!(*spec).js'
+      ]);
+      const frontendJsFilesUri = frontendJsFilesFullPath.map(function(filepath) {
+        return filepath.replace(FRONTEND_JS_PATH, '');
+      });
+      const lessFile = path.join(FRONTEND_JS_PATH, 'app.less');
+
+      webserverWrapper.injectAngularAppModules(AWESOME_MODULE_NAME, frontendJsFilesUri, AWESOME_MODULE_NAME, ['esn'], {
+        localJsFiles: frontendJsFilesFullPath
+      });
+      webserverWrapper.injectLess(AWESOME_MODULE_NAME, [lessFile], 'esn');
+
+      webserverWrapper.addApp(AWESOME_MODULE_NAME, app);
+
+      return callback();
+    }
   }
 });
+
 
 /**
  * The main AwesomeModule describing the application.

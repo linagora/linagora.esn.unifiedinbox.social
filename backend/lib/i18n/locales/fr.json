@@ -1,4 +1,5 @@
 {
   "Social": "Social",
-  "Social networks": "Réseaux sociaux"
+  "Social networks": "Réseaux sociaux",
+  "Enable Inbox social networks link with yours accounts, click Avatar <i class='mdi mdi-account-circle'></i> <i class='mdi mdi-chevron-right'></i> <strong><a href='#/controlcenter'>Controlcenter</a></strong> <i class='mdi mdi-chevron-right'></i> <strong><a href='#/controlcenter/accounts'>Accounts</a></strong>": "Activer les réseaux sociaux liés à vos comptes dans la boîte de réception, cliquer sur Avatar <i class='mdi mdi-account-circle'></i> <i class='mdi mdi-chevron-right'></i> <strong><a href='#/controlcenter'>Préférences</a></strong> <i class='mdi mdi-chevron-right'></i> <strong><a href='#/controlcenter/accounts'>Comptes</a></strong>"
 }
