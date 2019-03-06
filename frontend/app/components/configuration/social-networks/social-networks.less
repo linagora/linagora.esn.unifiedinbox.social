@@ -1,0 +1,52 @@
+.inbox-root {
+  .inbox-configuration-social-networks {
+    .inbox-configuration-social-networks-info {
+      i.mdi {
+        font-size: 1.3em;
+        vertical-align: text-top;
+      }
+
+      i.mdi-chevron-right {
+        color: @lighterSecondaryTextColor;
+      }
+
+      strong a {
+        color:  @secondaryTextColor;
+
+        &:hover, &:focus {
+          color: @primaryColor;
+        }
+      }
+    }
+    .card {
+      .card-header {
+        .flex-vertical-centered;
+        .flex-space-between;
+  
+         h2 {
+          .flex-vertical-centered;
+  
+          color: @text-color;
+  
+          .mdi {
+            color: @primaryColor;
+            font-size: 1.6em;
+            margin-right: 5px;
+          }
+        }
+  
+        .toggle-switch > label {
+          margin-bottom: 0;
+        }
+      }
+  
+      .card-body .form-group {
+        margin-bottom: 10px;
+      }
+    }
+
+    form {
+      padding-top: 20px;
+    }
+  }
+}
