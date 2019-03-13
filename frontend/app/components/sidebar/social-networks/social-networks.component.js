@@ -3,7 +3,7 @@
 
   angular.module('linagora.esn.unifiedinbox.social')
     .component('inboxSidebarSocialNetworks', {
-      templateUrl: '/unifiedinbox.social/app/components/sidebar/social-networks/social-networks.html',
+      templateUrl: '/linagora.esn.unifiedinbox.social/app/components/sidebar/social-networks/social-networks.html',
       controller: 'inboxSidebarSocialNetworksController'
     });
 

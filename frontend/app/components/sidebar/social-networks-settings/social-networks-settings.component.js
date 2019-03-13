@@ -3,6 +3,6 @@
 
   angular.module('linagora.esn.unifiedinbox.social')
     .component('inboxSocialNetworksSettings', {
-      templateUrl: '/unifiedinbox.social/app/components/sidebar/social-networks-settings/social-networks-settings.html'
+      templateUrl: '/linagora.esn.unifiedinbox.social/app/components/sidebar/social-networks-settings/social-networks-settings.html'
     });
 })(angular);

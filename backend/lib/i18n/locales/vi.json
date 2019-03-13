@@ -1,4 +1,5 @@
 {
   "Social": "Mạng xã hội",
-  "Social networks": "Mạng xã hội"
+  "Social networks": "Mạng xã hội",
+  "Enable Inbox social networks link with yours accounts, click Avatar <i class='mdi mdi-account-circle'></i> <i class='mdi mdi-chevron-right'></i> <strong><a href='#/controlcenter'>Controlcenter</a></strong> <i class='mdi mdi-chevron-right'></i> <strong><a href='#/controlcenter/accounts'>Accounts</a></strong>": "Bật hòm thư mạng xã hội liên kết với tài khoản của bạn, bấm vào ảnh đại diên <i class='mdi mdi-account-circle'></i> <i class='mdi mdi-chevron-right'></i> <strong><a href='#/controlcenter'>Trung tâm điều khiển</a></strong> <i class='mdi mdi-chevron-right'></i> <strong><a href='#/controlcenter/accounts'>Tài khoản</a></strong>"
 }
