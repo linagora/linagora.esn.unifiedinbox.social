@@ -4,8 +4,7 @@
 (function() {
   'use strict';
 
-  angular.module('linagora.esn.unifiedinbox.social')
-
-    .constant('INBOX_SOCIAL_MODULE_NAME', 'linagora.esn.unifiedinbox.social')
-
+  angular
+    .module('linagora.esn.unifiedinbox.social')
+    .constant('INBOX_SOCIAL_MODULE_NAME', 'linagora.esn.unifiedinbox.social');
 })();
