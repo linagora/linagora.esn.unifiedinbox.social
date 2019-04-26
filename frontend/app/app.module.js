@@ -9,6 +9,6 @@
     'esn.user-configuration',
     'ui.router',
     'linagora.esn.unifiedinbox',
-    'linagora.esn.account',
+    'linagora.esn.account'
   ]);
 })(angular);

@@ -1,0 +1,103 @@
+stages:
+  - prepare
+  - linters
+  - test
+  - deploy
+
+.cache-tpl: &cache-tpl
+  key: "$CI_COMMIT_REF_SLUG"
+  paths:
+    - node_modules
+    - frontend/components
+  policy: pull
+
+.test-template: &test-template
+  image: node:8.15.0-stretch
+  stage: test
+  tags:
+    - docker
+  cache:
+    <<: *cache-tpl
+  variables:
+      TZ: "America/New_York"
+  before_script:
+    - npm install -g grunt-cli
+    - 'echo "INFO: NB node packages : $(ls node_modules | wc -l)"'
+    - 'echo "INFO: NB bower packages : $(ls frontend/components | wc -l)"'
+  except:
+    variables:
+      - $SKIP_TESTS
+    refs:
+      - tags@linagora/lgs/openpaas/linagora.esn.unifiedinbox.social
+
+prepare:
+  image: node:8.15.0-stretch
+  stage: prepare
+  tags:
+    - docker
+  cache:
+    <<: *cache-tpl
+    policy: pull-push
+  script:
+    - npm install
+    - ./node_modules/.bin/bower install --allow-root
+    - 'echo "INFO: NB node packages : $(ls node_modules | wc -l)"'
+    - 'echo "INFO: NB bower packages : $(ls frontend/components | wc -l)"'
+  except:
+    variables:
+      - $SKIP_PREPARE
+
+linters:
+  <<: *test-template
+  stage: linters
+  script:
+    - grunt -v linters
+  except:
+    variables:
+      - $SKIP_LINTERS
+    refs:
+      - tags@linagora/lgs/openpaas/linagora.esn.unifiedinbox.social
+
+check_author:
+  image: docker-registry.linagora.com:5000/lgs-releases/gitlab-integrity-checks:latest
+  stage: linters
+  variables:
+    GIT_DEPTH: "1"
+  tags:
+    - docker-medium
+    - check-author
+  script:
+    - check_author.py check "$GITLAB_USER_EMAIL" "$GITLAB_USER_NAME" --no-accents
+  except:
+    refs:
+      - master@linagora/lgs/openpaas/linagora.esn.unifiedinbox.social
+      - tags@linagora/lgs/openpaas/linagora.esn.unifiedinbox.social
+      - /^release-.*/@linagora/lgs/openpaas/linagora.esn.unifiedinbox.social
+
+####### tests without services requirements
+frontend-test:
+  <<: *test-template
+  script:
+    - grunt -v test-frontend
+
+deploy:
+  stage: deploy
+  tags:
+    - dev.open-paas.org
+    - deployment
+  environment:
+    name: dev
+    url: https://dev.open-paas.org
+  only:
+    - master@linagora/lgs/openpaas/linagora.esn.unifiedinbox.social
+  script:
+    - cd /srv/${CI_PROJECT_NAME}
+    - git fetch --all
+    - git checkout ${CI_COMMIT_SHA}
+    - npm install --ignore-scripts --production
+    - npm update --production
+    - npm prune
+    - bower install --production
+    - bower prune
+    - git checkout -- .
+    - sudo /etc/init.d/rse.dev restart

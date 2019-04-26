@@ -1,5 +1,5 @@
 {
-  "Social": "社交",
+  "Add new account": "添加新账户",
   "Social networks": "社交网络",
   "Enable Inbox social networks link with yours accounts, click Avatar <i class='mdi mdi-account-circle'></i> <i class='mdi mdi-chevron-right'></i> <strong><a href='#/controlcenter'>Controlcenter</a></strong> <i class='mdi mdi-chevron-right'></i> <strong><a href='#/controlcenter/accounts'>Accounts</a></strong>": "启用收件箱社交网络与您账户之间的连接，点击图标 <i class='mdi mdi-account-circle'></i> <i class='mdi mdi-chevron-right'></i> <strong><a href='#/controlcenter'>Controlcenter</a></strong> <i class='mdi mdi-chevron-right'></i> <strong><a href='#/controlcenter/accounts'>Accounts</a></strong>"
 }
