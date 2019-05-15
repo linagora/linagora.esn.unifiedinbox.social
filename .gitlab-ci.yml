@@ -12,7 +12,7 @@ stages:
   policy: pull
 
 .test-template: &test-template
-  image: node:8.15.0-stretch
+  image: node:10-stretch
   stage: test
   tags:
     - docker
@@ -31,7 +31,7 @@ stages:
       - tags@linagora/lgs/openpaas/linagora.esn.unifiedinbox.social
 
 prepare:
-  image: node:8.15.0-stretch
+  image: node:10-stretch
   stage: prepare
   tags:
     - docker
