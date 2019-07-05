@@ -1,0 +1,5 @@
+{
+  "Add new account": "Добавить новый аккаунт",
+  "Social networks": "Социальные сети",
+  "Enable Inbox social networks link with yours accounts, click Avatar <i class='mdi mdi-account-circle'></i> <i class='mdi mdi-chevron-right'></i> <strong><a href='#/controlcenter'>Controlcenter</a></strong> <i class='mdi mdi-chevron-right'></i> <strong><a href='#/controlcenter/accounts'>Accounts</a></strong>": "Чтобы подключить социальные сети Inbox к своим учетным записям, нажмите Аватар <i class='mdi mdi-account-circle'></i> <i class='mdi mdi-chevron-right'></i><strong><a href='#/controlcenter'>Controlcenter</a></strong> <i class='mdi mdi-chevron-right'></i> <strong><a href='#/controlcenter/accounts'>Счета</a></strong>"
+}
