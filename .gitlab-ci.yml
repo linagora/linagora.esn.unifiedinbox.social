@@ -75,7 +75,7 @@ check_author:
       - /^release-.*/@linagora/lgs/openpaas/linagora.esn.unifiedinbox.social
 
 ####### tests without services requirements
-frontend-test:
+.frontend-test:
   <<: *test-template
   script:
     - grunt -v test-frontend
