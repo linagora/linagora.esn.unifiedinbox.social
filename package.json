@@ -47,7 +47,7 @@
     "karma-spec-reporter": "0.0.26",
     "mocha": "6.2.0",
     "mockery": "1.7.0",
-    "mongoose": "5.6.9",
+    "mongoose": "5.7.7",
     "phantomjs-prebuilt": "2.1.16",
     "rewire": "2.5.2",
     "sinon": "1.17.5",
