@@ -1,6 +1,6 @@
 {
   "name": "linagora.esn.unifiedinbox.social",
-  "version": "1.8.0-dev",
+  "version": "1.8.0-rc2",
   "description": "OpenPaaS Unified Inbox Machine Learning module",
   "main": "index.js",
   "devDependencies": {
